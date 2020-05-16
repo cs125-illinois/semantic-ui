@@ -1,6 +1,6 @@
 {
   "name": "@cs125/semantic-ui",
-  "version": "2020.5.1",
+  "version": "2020.5.3",
   "description": "CS 125 Semantic UI integrations",
   "main": "dist/index.tsx",
   "files": [
