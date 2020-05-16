@@ -1,12 +1,11 @@
 {
   "name": "@cs125/semantic-ui",
-  "version": "2020.5.3",
   "description": "CS 125 Semantic UI integrations",
-  "main": "dist/index.tsx",
+  "version": "2020.5.3",
+  "main": "dist/index.js",
   "files": [
     "dist/**/*"
   ],
-  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rm -rf dist && tsc --declaration && rm -rf dist/example/ && mv dist/src/* dist && rmdir dist/src && cp -R src/css dist/",
     "build:docs": "rm -rf docs/* && NODE_ENV=production webpack --config example/webpack.prod.config.js && rm -rf docs/*.map docs/*.js",
@@ -14,6 +13,7 @@
     "serve": "serve -l 1234 docs",
     "prettier": "prettier --write src/ *.json && prettier-package-json --write"
   },
+  "types": "dist/index.d.ts",
   "dependencies": {
     "@cs125/react-google-login": "^2020.5.2",
     "react-icons": "^3.10.0",
