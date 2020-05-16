@@ -7,7 +7,7 @@
     "dist/**/*"
   ],
   "scripts": {
-    "build": "rm -rf dist && tsc --declaration && rm -rf dist/example/ && mv dist/src/* dist && rmdir dist/src && cp -R src/css dist/ && find dist/css/ -type f ! -name \"*.min.css\" | xargs rm -f",
+    "build": "rm -rf dist && tsc --declaration && rm -rf dist/example/ && mv dist/src/* dist && rmdir dist/src && cp -R src/css dist/ && find dist/css/ -type f ! -name \"*.min.css\" | xargs rm -f && cp src/index.css dist/",
     "build:docs": "rm -rf docs/* && NODE_ENV=production webpack --config example/webpack.prod.config.js && rm -rf docs/*.map docs/*.js",
     "example": "webpack-dev-server --config example/webpack.dev.config.js",
     "serve": "serve -l 1234 docs",
