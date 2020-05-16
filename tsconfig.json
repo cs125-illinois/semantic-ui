@@ -17,7 +17,7 @@
     "typeRoots": ["node_modules/@types"],
     "baseUrl": ".",
     "paths": {
-      "@cs125/semantic-ui": ["."]
+      "@cs125/semantic-ui": ["./src/"]
     }
   }
 }
