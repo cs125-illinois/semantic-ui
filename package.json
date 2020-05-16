@@ -6,6 +6,7 @@
   "files": [
     "dist/**/*"
   ],
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rm -rf dist && tsc --declaration && rm -rf dist/example/ && mv dist/src/* dist && rmdir dist/src && cp -R src/css dist/",
     "build:docs": "rm -rf docs/* && NODE_ENV=production webpack --config example/webpack.prod.config.js && rm -rf docs/*.map docs/*.js",
