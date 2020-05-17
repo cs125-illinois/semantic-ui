@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react"
 import { withGoogleLogin } from "@cs125/react-google-login"
 
-import { Button } from ".."
+import { Button } from "semantic-ui-react"
 import { FaGoogle } from "react-icons/fa"
 
 export const LoginButton: React.FC = () => {
