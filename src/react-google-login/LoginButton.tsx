@@ -1,10 +1,10 @@
 import React, { useState, useCallback } from "react"
 import { withGoogleLogin } from "@cs125/react-google-login"
 
-import { Button } from "semantic-ui-react"
+import { Button, ButtonProps } from "semantic-ui-react"
 import { FaGoogle } from "react-icons/fa"
 
-export const LoginButton: React.FC = () => {
+export const LoginButton: React.FC = (props: ButtonProps) => {
   const { ready, auth, isSignedIn } = withGoogleLogin()
   const [busy, setBusy] = useState<boolean>(false)
 
@@ -24,7 +24,13 @@ export const LoginButton: React.FC = () => {
   )
 
   return (
-    <Button positive={!isSignedIn} loading={!ready || busy} disabled={!ready} onClick={loginOrOut(isSignedIn)}>
+    <Button
+      positive={!isSignedIn}
+      loading={!ready || busy}
+      disabled={!ready}
+      onClick={loginOrOut(isSignedIn)}
+      {...props}
+    >
       {!isSignedIn ? (
         <>
           <FaGoogle style={{ paddingTop: "0.1em" }} /> Login
