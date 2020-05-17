@@ -19,7 +19,12 @@ export const Highlighted: React.FC<HighlightedProps> = ({ className, fontSize, c
   const language = className?.replace(/language-/, "") || ""
   const contents = Children.onlyText(children).trim()
   return (
-    <PrismLight style={style} language={language} customStyle={{ fontSize }}>
+    <PrismLight
+      style={style}
+      language={language}
+      customStyle={{ fontSize }}
+      codeTagProps={{ style: { fontFamily: "Source Code Pro" } }}
+    >
       {contents}
     </PrismLight>
   )
@@ -30,5 +35,5 @@ Highlighted.propTypes = {
 }
 Highlighted.defaultProps = {
   className: "",
-  fontSize: "0.9rem",
+  fontSize: "1rem",
 }
