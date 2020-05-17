@@ -17,8 +17,11 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@cs125/react-google-login": "^2020.5.2",
+    "react-children-utilities": "^2.1.1",
     "react-icons": "^3.10.0",
-    "semantic-ui-react": "^0.88.2"
+    "react-syntax-highlighter": "^12.2.1",
+    "semantic-ui-react": "^0.88.2",
+    "slugify": "^1.4.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.9.6",
@@ -30,6 +33,7 @@
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "@types/react-helmet": "^6.0.0",
+    "@types/react-syntax-highlighter": "^11.0.4",
     "@types/webpack-env": "^1.15.2",
     "babel-loader": "^8.1.0",
     "babel-plugin-lodash": "^3.3.4",

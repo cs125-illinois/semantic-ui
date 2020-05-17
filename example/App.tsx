@@ -10,6 +10,13 @@ import Content from "./index.mdx"
 
 import { GoogleLoginProvider } from "@cs125/react-google-login"
 
+import { Highlighted } from "@cs125/semantic-ui"
+import { headings } from "@cs125/semantic-ui"
+const components = {
+  code: Highlighted,
+  ...headings
+}
+
 const App: React.SFC = () => (
   <React.Fragment>
     <GoogleLoginProvider
@@ -18,7 +25,7 @@ const App: React.SFC = () => (
       }}
     >
       <Container text style={{ paddingTop: 16 }}>
-        <MDXProvider>
+        <MDXProvider components={components}>
           <Content />
         </MDXProvider>
       </Container>
