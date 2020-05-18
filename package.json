@@ -12,12 +12,13 @@
     "build:docs": "rm -rf docs/* && NODE_ENV=production webpack --config example/webpack.prod.config.js && rm -rf docs/*.map docs/*.js",
     "example": "webpack-dev-server --config example/webpack.dev.config.js",
     "serve": "serve -l 1234 docs",
-    "prettier": "prettier --write src/ *.json && prettier-package-json --write"
+    "prettier": "prettier --write src/ *.json && prettier-package-json --write",
+    "ncu": "ncu"
   },
   "types": "dist/index.d.ts",
   "dependencies": {
     "@cs125/element-tracker": "^2020.5.5",
-    "@cs125/react-google-login": "^2020.5.2",
+    "@cs125/react-google-login": "^2020.5.3",
     "react-children-utilities": "^2.1.1",
     "react-icons": "^3.10.0",
     "react-syntax-highlighter": "^12.2.1",

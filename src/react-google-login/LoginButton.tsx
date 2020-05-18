@@ -1,11 +1,11 @@
 import React, { useState, useCallback } from "react"
-import { withGoogleLogin } from "@cs125/react-google-login"
+import { useGoogleLogin } from "@cs125/react-google-login"
 
 import { Button, ButtonProps } from "semantic-ui-react"
 import { FaGoogle } from "react-icons/fa"
 
 export const LoginButton: React.FC<ButtonProps> = (props: ButtonProps) => {
-  const { ready, auth, isSignedIn } = withGoogleLogin()
+  const { ready, auth, isSignedIn } = useGoogleLogin()
   const [busy, setBusy] = useState<boolean>(false)
 
   const loginOrOut = useCallback(
