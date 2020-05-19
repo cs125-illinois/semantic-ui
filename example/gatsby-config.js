@@ -13,6 +13,7 @@ module.exports = {
           "@cs125/react-google-login":
             "./node_modules/@cs125/react-google-login",
           "@cs125/element-tracker": "./node_modules/@cs125/element-tracker",
+          "@components": "./src/components",
         },
       },
     },

@@ -6,6 +6,7 @@ import { useElementTracker, Component } from "@cs125/element-tracker"
 import { List } from "semantic-ui-react"
 
 import { debounce } from "throttle-debounce"
+import { active } from "./active"
 
 const HoverItem = styled(List.Item)`
   :hover {
@@ -51,18 +52,9 @@ export const SidebarMenu: React.FC = () => {
       .map(c => {
         return { ...c, active: false }
       })
-    if (newHeaders.length === 0) {
-      setHeaders([])
-      return
-    }
-    const onScreenHeaders = newHeaders.filter(c => c.top >= 0)
-    const offScreenHeaders = newHeaders.filter(c => c.top < 0)
-    if (onScreenHeaders.length > 0 && onScreenHeaders[0].bottom < onScreenHeaders[0].height) {
-      onScreenHeaders[0].active = true
-    } else if (offScreenHeaders.length > 0) {
-      offScreenHeaders[offScreenHeaders.length - 1].active = true
-    } else {
-      newHeaders[0].active = true
+    const activeHeader = active(newHeaders)
+    if (activeHeader) {
+      activeHeader.active = true
     }
     setHeaders(newHeaders)
   }, [components])

@@ -1,26 +1,27 @@
-import React, { useMemo, useRef } from "react"
+import React, { useMemo, useRef, useCallback } from "react"
 
 import { useElementTracker } from "@cs125/element-tracker"
+import { active } from "./active"
 
 export const UpdateHash: React.FC<{ tags: string[] }> = ({ tags }) => {
   const hash = useRef<string>("#")
-  const { components } = useElementTracker()
+  const setHash = useCallback((newHash: string) => {
+    if (hash.current !== newHash) {
+      hash.current = newHash
+      window.history.replaceState({}, "", newHash)
+    }
+  }, [])
 
+  const { components } = useElementTracker()
   useMemo(() => {
-    if ((document.documentElement.scrollTop || document.body.scrollTop) === 0 && hash.current !== "#") {
-      hash.current = "#"
-      window.history.replaceState({}, "", "#")
+    if (!components || (document.documentElement.scrollTop || document.body.scrollTop) === 0) {
+      setHash("#")
       return
     }
-    const firstVisible = components?.find(c => c.top > 0 && c.bottom < c.height && c.id && tags.includes(c.tag))
-    if (firstVisible) {
-      const newHash = `#${firstVisible.id}`
-      if (hash.current !== newHash) {
-        hash.current = newHash
-        window.history.replaceState({}, "", `#${firstVisible.id}`)
-      }
-    }
-  }, [tags, components?.find])
+    const activeHash = components && active(components.filter(c => c.id && tags.includes(c.tag)))
+    setHash(activeHash ? `#${activeHash.id}` : "#")
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tags, components])
 
   return null
 }
