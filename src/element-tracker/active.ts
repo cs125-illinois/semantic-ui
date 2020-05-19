@@ -21,14 +21,11 @@ export function active<T extends Component>(components: Array<T>): T | undefined
   }
 
   if (atBottom() && window.location.hash) {
-    console.log("Here")
     const hashedComponent = components.find(c => c.id === window.location.hash.substring(1))
     if (hashedComponent && hashedComponent.top >= 0) {
-      console.log("Word")
       return hashedComponent
     }
   }
-  console.log(`Blah: ${window.location}`)
 
   const onScreenHeaders = components.filter(c => c.top >= 0)
   const offScreenHeaders = components.filter(c => c.top < 0)
