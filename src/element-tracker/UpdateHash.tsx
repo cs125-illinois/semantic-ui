@@ -12,7 +12,7 @@ export const UpdateHash: React.FC<{ tags: string[] }> = ({ tags }) => {
       window.history.replaceState({}, "", "#")
       return
     }
-    const firstVisible = components?.find((c) => c.top > 0 && c.bottom < c.height && c.id && tags.includes(c.tag))
+    const firstVisible = components?.find(c => c.top > 0 && c.bottom < c.height && c.id && tags.includes(c.tag))
     if (firstVisible) {
       const newHash = `#${firstVisible.id}`
       if (hash.current !== newHash) {

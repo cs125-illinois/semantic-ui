@@ -13,7 +13,7 @@
     "example": "cd example && gatsby develop -p 1234",
     "ncu": "ncu",
     "start": "concurrently -n example,src,backend --handle-input \"npm run example\" \"npm run watch\" \"npm run backend\"",
-    "prettier": "prettier --write src/ *.json && prettier-package-json --write",
+    "prettier": "prettier --write \"**/*.{ts,tsx,js,json,mdx}\" && prettier-package-json --write && cd example && prettier-package-json --write",
     "watch": "tsc --watch"
   },
   "types": "dist/index.d.ts",

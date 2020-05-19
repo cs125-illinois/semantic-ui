@@ -21,16 +21,16 @@ export const SidebarMenu: React.FC = () => {
       return
     }
     const newHeaders = components
-      .filter((c) => c.tag === "h2")
-      .map((c) => {
+      .filter(c => c.tag === "h2")
+      .map(c => {
         return { ...c, active: false }
       })
     if (newHeaders.length === 0) {
       setHeaders([])
       return
     }
-    const onScreenHeaders = newHeaders.filter((c) => c.top >= 0)
-    const offScreenHeaders = newHeaders.filter((c) => c.top < 0)
+    const onScreenHeaders = newHeaders.filter(c => c.top >= 0)
+    const offScreenHeaders = newHeaders.filter(c => c.top < 0)
     if (onScreenHeaders.length > 0 && onScreenHeaders[0].bottom < onScreenHeaders[0].height) {
       onScreenHeaders[0].active = true
     } else if (offScreenHeaders.length > 0) {

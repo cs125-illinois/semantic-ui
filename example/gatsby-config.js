@@ -10,9 +10,10 @@ module.exports = {
         aliases: {
           react: "./node_modules/react",
           "@cs125/semantic-ui": "..",
-          "@cs125/react-google-login": "./node_modules/@cs125/react-google-login",
+          "@cs125/react-google-login":
+            "./node_modules/@cs125/react-google-login",
         },
       },
-    }
+    },
   ],
 }

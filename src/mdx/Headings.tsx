@@ -9,7 +9,7 @@ interface HeadingProps {
   children: React.ReactNode
 }
 const Heading = (tag: string): React.FC<HeadingProps> => {
-  const WrappedHeading: React.FC<HeadingProps> = (props) => {
+  const WrappedHeading: React.FC<HeadingProps> = props => {
     const { children } = props
     const id = props.id || slugify(Children.onlyText(children), { lower: true })
     return React.createElement(tag, { id }, children)
