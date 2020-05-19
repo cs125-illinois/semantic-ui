@@ -44,7 +44,7 @@ export const SidebarMenu: React.FC = () => {
   return (
     <List size="large">
       {headers.map((header, i) => {
-        const headerLocation = `${location.href.split("#")[0]}#${header.id}`
+        const headerLocation = `${window.location.href.split("#")[0]}#${header.id}`
         return (
           <HoverItem
             onClick={(): void => {

@@ -1,8 +1,7 @@
 import React, { useState, useCallback } from "react"
 import { useGoogleLogin } from "@cs125/react-google-login"
 
-import { Button, ButtonProps } from "semantic-ui-react"
-import { FaGoogle } from "react-icons/fa"
+import { Button, ButtonProps, Icon } from "semantic-ui-react"
 
 export const LoginButton: React.FC<ButtonProps> = (props: ButtonProps) => {
   const { ready, auth, isSignedIn } = useGoogleLogin()
@@ -33,7 +32,7 @@ export const LoginButton: React.FC<ButtonProps> = (props: ButtonProps) => {
     >
       {!isSignedIn ? (
         <>
-          <FaGoogle style={{ paddingTop: "0.1em" }} /> Login
+          <Icon name="google" /> Login
         </>
       ) : (
         <div style={{ padding: "0.1em 0.3em" }}>Logout</div>

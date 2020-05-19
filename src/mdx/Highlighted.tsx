@@ -6,8 +6,9 @@ import Children from "react-children-utilities"
 import PrismLight from "react-syntax-highlighter/dist/esm/prism-light"
 import style from "react-syntax-highlighter/dist/esm/styles/prism/tomorrow"
 import bash from "react-syntax-highlighter/dist/esm/languages/prism/bash"
-PrismLight.registerLanguage("bash", bash)
 import tsx from "react-syntax-highlighter/dist/esm/languages/prism/tsx"
+
+PrismLight.registerLanguage("bash", bash)
 PrismLight.registerLanguage("tsx", tsx)
 
 interface HighlightedProps {
