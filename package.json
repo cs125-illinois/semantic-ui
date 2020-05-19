@@ -10,10 +10,8 @@
     "backend": "docker-compose --env-file example/.env.development -p $npm_package_name up",
     "backend:stop": "docker-compose --env-file example/.env.development -p $npm_package_name down",
     "build": "rm -rf dist && tsc && cp -R css/dist/css dist/css",
-    "build:docs": "rm -rf docs/* && NODE_ENV=production webpack --config example/webpack.prod.config.js && rm -rf docs/*.map docs/*.js",
     "example": "cd example && gatsby develop -p 1234",
     "ncu": "ncu",
-    "serve": "serve -l 1234 docs",
     "start": "concurrently -n example,src,backend --handle-input \"npm run example\" \"npm run watch\" \"npm run backend\"",
     "prettier": "prettier --write src/ *.json && prettier-package-json --write",
     "watch": "tsc --watch"
@@ -45,7 +43,6 @@
     "react-ace": "^8.1.0",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
-    "serve": "^11.3.0",
     "typescript": "^3.9.2"
   },
   "prettier": {
