@@ -20,7 +20,7 @@ export const UpdateHash: React.FC<{ tags: string[] }> = ({ tags }) => {
         window.history.replaceState({}, "", `#${firstVisible.id}`)
       }
     }
-  }, [tags, components])
+  }, [tags, components?.find])
 
   return null
 }

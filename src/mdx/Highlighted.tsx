@@ -32,6 +32,7 @@ export const Highlighted: React.FC<HighlightedProps> = ({ className, fontSize, c
 }
 Highlighted.propTypes = {
   className: PropTypes.string,
+  fontSize: PropTypes.string,
   children: PropTypes.node.isRequired,
 }
 Highlighted.defaultProps = {

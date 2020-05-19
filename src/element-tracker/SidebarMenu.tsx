@@ -1,9 +1,11 @@
-import React, { useState, useLayoutEffect } from "react"
+import React, { useState, useLayoutEffect, useCallback, useEffect } from "react"
 
 import styled from "styled-components"
 
 import { useElementTracker, Component } from "@cs125/element-tracker"
 import { List } from "semantic-ui-react"
+
+import { debounce } from "throttle-debounce"
 
 const HoverItem = styled(List.Item)`
   :hover {
@@ -14,9 +16,33 @@ const HoverItem = styled(List.Item)`
 export const SidebarMenu: React.FC = () => {
   const { components } = useElementTracker()
   const [headers, setHeaders] = useState<(Component & { active: boolean })[]>([])
+  const [visible, setVisible] = useState<boolean>(false)
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const updateVisible = useCallback(
+    debounce(100, () => {
+      const contentHeight = document.body.scrollHeight
+      const windowHeight = window.innerHeight
+      setVisible(contentHeight > windowHeight)
+    }),
+    [setVisible]
+  )
+
+  useEffect(() => {
+    updateVisible()
+    window.addEventListener("load", updateVisible)
+    window.addEventListener("hashchange", updateVisible)
+    window.addEventListener("resize", updateVisible)
+    return (): void => {
+      window.removeEventListener("load", updateVisible)
+      window.removeEventListener("hashchange", updateVisible)
+      window.removeEventListener("resize", updateVisible)
+      updateVisible.cancel()
+    }
+  }, [updateVisible])
 
   useLayoutEffect(() => {
-    if (!components) {
+    if (!components || components.length === 0) {
       setHeaders([])
       return
     }
@@ -41,6 +67,9 @@ export const SidebarMenu: React.FC = () => {
     setHeaders(newHeaders)
   }, [components])
 
+  if (!visible) {
+    return null
+  }
   return (
     <List size="large">
       {headers.map((header, i) => {
