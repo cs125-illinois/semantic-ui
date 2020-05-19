@@ -24,7 +24,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@cs125/element-tracker": "^2020.5.8",
-    "@cs125/react-google-login": "^2020.5.4",
+    "@cs125/react-google-login": "^2020.5.5",
     "is-mobile": "^2.2.1",
     "react-children-utilities": "^2.1.1",
     "react-icons": "^3.10.0",
