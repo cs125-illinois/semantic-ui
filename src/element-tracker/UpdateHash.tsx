@@ -7,7 +7,7 @@ import mobile from "is-mobile"
 const isMobile = mobile()
 
 export const UpdateHash: React.FC<{ tags: string[] }> = ({ tags }) => {
-  const hash = useRef<string>(window.location.hash || "#")
+  const hash = useRef<string>((typeof window !== `undefined` && window.location.hash) || "#")
   const hashTimer = useRef<number | undefined>(undefined)
 
   const setHash = useCallback((newHash: string) => {
