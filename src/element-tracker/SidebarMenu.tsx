@@ -1,11 +1,10 @@
-import React, { useState, useLayoutEffect, useCallback, useEffect } from "react"
+import React, { useState, useLayoutEffect } from "react"
 
 import styled from "styled-components"
 
-import { useElementTracker, Component } from "@cs125/element-tracker"
+import { useElementTracker } from "@cs125/element-tracker"
 import { List } from "semantic-ui-react"
 
-import { debounce } from "throttle-debounce"
 import { active } from "./active"
 
 const HoverItem = styled(List.Item)`
@@ -16,67 +15,47 @@ const HoverItem = styled(List.Item)`
 
 export const SidebarMenu: React.FC = () => {
   const { components } = useElementTracker()
-  const [headers, setHeaders] = useState<(Component & { active: boolean })[]>([])
-  const [visible, setVisible] = useState<boolean>(false)
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const updateVisible = useCallback(
-    debounce(100, () => {
-      const contentHeight = document.body.scrollHeight
-      const windowHeight = window.innerHeight
-      setVisible(contentHeight > windowHeight)
-    }),
-    [setVisible]
-  )
-
-  useEffect(() => {
-    updateVisible()
-    window.addEventListener("load", updateVisible)
-    window.addEventListener("hashchange", updateVisible)
-    window.addEventListener("resize", updateVisible)
-    return (): void => {
-      window.removeEventListener("load", updateVisible)
-      window.removeEventListener("hashchange", updateVisible)
-      window.removeEventListener("resize", updateVisible)
-      updateVisible.cancel()
-    }
-  }, [updateVisible])
+  const [activeHeader, setActiveHeader] = useState<string | undefined>(undefined)
 
   useLayoutEffect(() => {
     if (!components || components.length === 0) {
-      setHeaders([])
+      setActiveHeader(undefined)
       return
     }
-    const newHeaders = components
-      .filter(c => c.tag === "h2")
-      .map(c => {
-        return { ...c, active: false }
-      })
-    const activeHeader = active(newHeaders)
-    if (activeHeader) {
-      activeHeader.active = true
-    }
-    setHeaders(newHeaders)
+    const activeHeader = active(
+      components
+        .filter(c => c.tag === "h2")
+        .map(c => {
+          return { ...c, active: false }
+        })
+    )
+    setActiveHeader(activeHeader && activeHeader.id)
   }, [components])
 
-  if (!visible) {
+  if (!components) {
     return null
   }
   return (
     <List size="large">
-      {headers.map((header, i) => {
-        const headerLocation = `${window.location.href.split("#")[0]}#${header.id}`
-        return (
-          <HoverItem
-            onClick={(): void => {
-              window.location.href = headerLocation
-            }}
-            key={i}
-          >
-            {header.active ? <strong>{header.text}</strong> : <span>{header.text}</span>}
-          </HoverItem>
-        )
-      })}
+      {components
+        .filter(c => c.tag === "h2")
+        .map((component, i) => {
+          const headerLocation = `${window.location.href.split("#")[0]}#${component.id}`
+          return (
+            <HoverItem
+              onClick={(): void => {
+                window.location.href = headerLocation
+              }}
+              key={i}
+            >
+              {activeHeader && component.id && component.id === activeHeader ? (
+                <strong onClick={(): void => setActiveHeader(component.id)}>{component.text}</strong>
+              ) : (
+                <span onClick={(): void => setActiveHeader(component.id)}>{component.text}</span>
+              )}
+            </HoverItem>
+          )
+        })}
     </List>
   )
 }

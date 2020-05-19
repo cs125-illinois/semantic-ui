@@ -21,7 +21,7 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
-    "@cs125/gatsby-theme-cs125-docs": "^2020.5.6",
+    "@cs125/gatsby-theme-cs125-docs": "^2020.5.8",
     "gatsby": "^2.22.0",
     "gatsby-alias-imports": "^1.0.4",
     "lorem-ipsum": "^2.0.3",

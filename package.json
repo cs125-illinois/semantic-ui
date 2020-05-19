@@ -23,15 +23,15 @@
   },
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@cs125/element-tracker": "^2020.5.7",
+    "@cs125/element-tracker": "^2020.5.8",
     "@cs125/react-google-login": "^2020.5.4",
+    "is-mobile": "^2.2.1",
     "react-children-utilities": "^2.1.1",
     "react-icons": "^3.10.0",
     "react-syntax-highlighter": "^12.2.1",
     "semantic-ui-react": "^0.88.2",
     "slugify": "^1.4.0",
-    "styled-components": "^5.1.0",
-    "throttle-debounce": "^2.1.0"
+    "styled-components": "^5.1.0"
   },
   "devDependencies": {
     "@types/prop-types": "^15.7.3",
