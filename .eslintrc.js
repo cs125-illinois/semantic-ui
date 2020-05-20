@@ -22,9 +22,6 @@ module.exports = {
         "plugin:prettier/recommended",
         "plugin:react-hooks/recommended",
       ],
-      rules: {
-        "@typescript-eslint/camelcase": "off",
-      },
     },
   ],
 }

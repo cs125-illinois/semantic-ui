@@ -1,4 +1,5 @@
 import React, { useMemo, useRef, useCallback, useEffect } from "react"
+import PropTypes from "prop-types"
 
 import { useElementTracker } from "@cs125/element-tracker"
 import { active, atBottom, atTop } from "./active"
@@ -6,7 +7,10 @@ import mobile from "is-mobile"
 
 const isMobile = mobile()
 
-export const UpdateHash: React.FC<{ tags: string[] }> = ({ tags }) => {
+interface UpdateHashProps {
+  tags: string[]
+}
+export const UpdateHash: React.FC<UpdateHashProps> = ({ tags }) => {
   const hash = useRef<string>((typeof window !== `undefined` && window.location.hash) || " ")
   const hashTimer = useRef<number | undefined>(undefined)
 
@@ -46,4 +50,10 @@ export const UpdateHash: React.FC<{ tags: string[] }> = ({ tags }) => {
   }, [setHash])
 
   return null
+}
+UpdateHash.propTypes = {
+  tags: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+}
+UpdateHash.defaultProps = {
+  tags: ["h2"],
 }

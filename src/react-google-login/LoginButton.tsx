@@ -5,7 +5,7 @@ import { Button, ButtonProps } from "semantic-ui-react"
 import { FaGoogle } from "react-icons/fa"
 
 export const LoginButton: React.FC<ButtonProps> = (props: ButtonProps) => {
-  const { ready, auth, isSignedIn } = useGoogleLogin()
+  const { ready, auth, isSignedIn, err } = useGoogleLogin()
   const [busy, setBusy] = useState<boolean>(false)
 
   const loginOrOut = useCallback(
@@ -23,21 +23,35 @@ export const LoginButton: React.FC<ButtonProps> = (props: ButtonProps) => {
     [auth, setBusy]
   )
 
+  let content
+  if (err !== undefined) {
+    content = <div style={{ padding: "0.1em 0.7em" }}>Error</div>
+  } else if (!isSignedIn) {
+    content = (
+      <div>
+        <FaGoogle style={{ paddingTop: "0.1em" }} /> Login
+      </div>
+    )
+  } else {
+    content = <div style={{ padding: "0.1em 0.3em" }}>Logout</div>
+  }
+
   return (
     <Button
-      positive={!isSignedIn}
-      loading={!ready || busy}
-      disabled={!ready}
-      onClick={loginOrOut(isSignedIn)}
+      positive={!err && !isSignedIn}
+      negative={err !== undefined}
+      loading={!err && (!ready || busy)}
+      disabled={err !== undefined || !ready}
+      onClick={
+        !err
+          ? loginOrOut(isSignedIn)
+          : (): void => {
+              return
+            }
+      }
       {...props}
     >
-      {!isSignedIn ? (
-        <>
-          <FaGoogle style={{ paddingTop: "0.1em" }} /> Login
-        </>
-      ) : (
-        <div style={{ padding: "0.1em 0.3em" }}>Logout</div>
-      )}
+      {content}
     </Button>
   )
 }
