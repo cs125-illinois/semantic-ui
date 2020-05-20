@@ -1,16 +1,11 @@
 import React, { useMemo } from "react"
 import PropTypes from "prop-types"
 
-import { LoremIpsum as LI } from "lorem-ipsum"
+import { randomParagraphs } from "./randomParagraphs"
 
-const lorem = new LI()
 const LoremIpsum: React.FC<{ p: number }> = ({ p }) => {
   const paragraphs = useMemo(() => {
-    const ps = []
-    for (let i = 0; i < p; i++) {
-      ps.push(<p key={i}>{lorem.generateParagraphs(1)}</p>)
-    }
-    return ps
+    return randomParagraphs(p)
   }, [p])
   return <React.Fragment>{paragraphs}</React.Fragment>
 }

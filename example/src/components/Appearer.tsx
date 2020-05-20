@@ -2,12 +2,12 @@ import React, { useState, useRef, useEffect } from "react"
 
 import { randomParagraphs } from "./randomParagraphs"
 
-const Flasher: React.FC = () => {
-  const content = useRef(randomParagraphs(1))
+const Appearer: React.FC = () => {
+  const content = useRef(randomParagraphs(6))
   const [visible, setVisible] = useState(false)
   useEffect(() => {
-    const timer = setInterval(() => {
-      setVisible(visible => !visible)
+    const timer = setTimeout(() => {
+      setVisible(true)
     }, 1000)
     return (): void => {
       clearTimeout(timer)
@@ -15,9 +15,9 @@ const Flasher: React.FC = () => {
   }, [])
   return visible ? (
     <>
-      <h2 id="flasher">Flasher</h2>
+      <h2 id="appearer">Appearer</h2>
       <p>{content.current}</p>
     </>
   ) : null
 }
-export default Flasher
+export default Appearer

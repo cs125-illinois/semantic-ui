@@ -1,13 +1,13 @@
 import React, { useMemo, useRef, useCallback, useEffect } from "react"
 
 import { useElementTracker } from "@cs125/element-tracker"
-import { active, atBottom } from "./active"
+import { active, atBottom, atTop } from "./active"
 import mobile from "is-mobile"
 
 const isMobile = mobile()
 
 export const UpdateHash: React.FC<{ tags: string[] }> = ({ tags }) => {
-  const hash = useRef<string>((typeof window !== `undefined` && window.location.hash) || "#")
+  const hash = useRef<string>((typeof window !== `undefined` && window.location.hash) || " ")
   const hashTimer = useRef<number | undefined>(undefined)
 
   const setHash = useCallback((newHash: string) => {
@@ -27,17 +27,17 @@ export const UpdateHash: React.FC<{ tags: string[] }> = ({ tags }) => {
 
   const { components } = useElementTracker()
   useMemo(() => {
-    if (!components || ((document.documentElement.scrollTop || document.body.scrollTop) === 0 && !atBottom())) {
-      setHash("#")
+    if (!components || (atTop() && !atBottom())) {
+      setHash(" ")
       return
     }
     const activeHash = components && active(components.filter(c => c.id && tags.includes(c.tag)))
-    setHash(activeHash ? `#${activeHash.id}` : "#")
+    setHash(activeHash ? `#${activeHash.id}` : " ")
   }, [tags, components, setHash])
 
   useEffect(() => {
     const hashListener = (): void => {
-      setHash(window.location.hash || "#")
+      setHash(window.location.hash || " ")
     }
     window.addEventListener("hashchange", hashListener)
     return (): void => {

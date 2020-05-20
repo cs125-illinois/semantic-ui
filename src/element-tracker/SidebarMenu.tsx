@@ -22,13 +22,7 @@ export const SidebarMenu: React.FC = () => {
       setActiveHeader(undefined)
       return
     }
-    const activeHeader = active(
-      components
-        .filter(c => c.tag === "h2")
-        .map(c => {
-          return { ...c, active: false }
-        })
-    )
+    const activeHeader = active(components.filter(c => c.tag === "h2"))
     setActiveHeader(activeHeader && activeHeader.id)
   }, [components])
 

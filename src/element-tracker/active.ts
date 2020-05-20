@@ -1,5 +1,8 @@
 import { Component } from "@cs125/element-tracker"
 
+export function atTop(): boolean {
+  return (document.documentElement.scrollTop || document.body.scrollTop) === 0
+}
 export function atBottom(): boolean {
   const documentHeight = Math.max(
     document.body.scrollHeight,
