@@ -12,7 +12,7 @@
   "scripts": {
     "backend": "docker-compose --env-file example/.env.development -p $npm_package_name up; true",
     "postbackend": "docker-compose --env-file example/.env.development -p $npm_package_name down",
-    "build": "rm -rf dist && tsc && cp -R css/dist/css dist/css",
+    "build": "rm -rf dist && tsc && cp -R fomantic-ui/dist/css dist/css",
     "check": "npm run eslint && npm run tsc && npm run prettier && npm run depcheck",
     "depcheck": "depcheck --ignore-dirs example --ignores=@types/*,@typescript-eslint/*,eslint-plugin-*",
     "eslint": "eslint --fix src/ --max-warnings=0 --ext .js,.ts,.tsx",
